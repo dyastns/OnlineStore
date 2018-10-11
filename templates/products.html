@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <title>Products</title>
+</head>
+<div>
+<div class="content">
+<header class="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <nav>
+                    <ul class="session-menu d-flex justify-content-end">
+                        <li class="session-menu__item">
+                            <a href="#"><i class="fas fa-search"></i></a>
+                        </li>
+                        <li class="session-menu__item">
+                            <a href="#"><i class="far fa-user"></i></a>
+                        </li>
+                        <li class="session-menu__item">
+                            <a href="#"><i class="far fa-heart"></i></a>
+                        </li>
+                        <li class="session-menu__item">
+                            <a href="#"><img class="session-menu__shopping-bag" src="/assets/img/shopping-bag.png" alt="shopping-bag" style="width:24px;height:24px;"></a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="brand d-flex justify-content-center">
+                    <a href="/">
+                        <img src="/assets/img/logo_halva.jpeg" alt="brand halva t-shirts" style="width:80px;height:67px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="menu col d-flex justify-content-center">
+                <nav class="navbar navbar-expand-sm navbar-light p-0">
+                    <button class="navbar-toggler my-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="sr-only">Open navigation</span>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item menu__item">
+                                <a class="nav-link" href="#">Women</a>
+                            </li>
+                            <li class="nav-item menu__item">
+                                <a class="nav-link" href="#">Men</a>
+                            </li>
+                            <li class="nav-item menu__item">
+                                <a class="nav-link" href="#">Kids</a>
+                            </li>
+                            <li class="nav-item menu__item">
+                                <a class="nav-link" href="#">Sale</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="presentation">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card-group">
+                <div class="card border-0">
+                    <img class="card-img-top" src="assets/img/card_on_pink.jpg" alt="Card image" >
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="assets/img/collage_examples.jpg" alt="Card image" >
+                </div>
+                <div class="card">
+                    <img class="card-img-top" src="assets/img/its_time_for_wine_girl.jpg" alt="Card image" >
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product-list">
+    <div class="container">
+        <div class="row" id="grid" data-columns>
+            <#list products as product>
+                <div class="card border-0 my-5" >
+                    <a href="#">
+                        <img class="card-img-top rounded-0" src=<#if (product.picturePath)??>${product.picturePath}</#if>
+                            alt="Card image product">
+                    </a>
+                    <div class="card-body p-0">
+                        <div class="product-list__product-name">
+                            <a href="#" class="card-link link__product-name">${product.name}</a>
+                        </div>
+                        <p class="card-text">$${product.price?string(",##0.00")}</p>
+                    </div>
+                </div>
+            </#list>
+        </div>
+    </div>
+</section>
+</div>
+
+<footer class="footer py-1">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <nav>
+                    <ul class="footer-menu d-sm-flex justify-content-around">
+                        <li class="footer-menu__item">
+                            <a href="#">Ordering and Shipping</a>
+                        </li>
+                        <li class="footer-menu__item">
+                            <a href="#">Returns</a>
+                        </li>
+                        <li class="footer-menu__item">
+                            <a href="#">Size Guide</a>
+                        </li>
+                        <li class="footer-menu__item">
+                            <a href="#">About Halva T-shirts</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <ul class="footer-social d-flex justify-content-center">
+                    <li class="footer-social__item mx-2">
+                        <a href="https://www.facebook.com/halvatshirts" alt="Facebook" target="_blank" title="halva Facebook">
+                            <i class="fab fa-facebook-f fa-2x"></i>
+                        </a>
+                    </li>
+                    <li class="footer-social__item mx-2">
+                        <a href="https://www.instagram.com/halvatshirts/?hl=ru" alt="Instagram" target="_blank" title="halva Instagram">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="copyright">© 2018 halvatshirts.com All rights reserved</div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!--Masonry alternative https://salvattore.js.org/ -->
+<script src="assets/js/salvattore.min.js"></script>
+
+</body>
+</html>
