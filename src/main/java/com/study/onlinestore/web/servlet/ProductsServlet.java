@@ -1,6 +1,7 @@
 package com.study.onlinestore.web.servlet;
 
 import com.study.onlinestore.entity.Product;
+import com.study.onlinestore.entity.User;
 import com.study.onlinestore.service.ProductService;
 import com.study.onlinestore.web.templater.PageGenerator;
 
@@ -8,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +24,10 @@ public class ProductsServlet extends HttpServlet {
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("products", products);
+
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        parameters.put("user", user);
 
         response.setContentType("text/html;charset=utf-8");
 

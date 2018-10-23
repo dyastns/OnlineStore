@@ -15,8 +15,23 @@ public class DefaultProductService implements ProductService {
     }
 
     @Override
+    public Product getProductById(int productId) {
+        return productDao.getProductById(productId);
+    }
+
+    @Override
     public int addProduct(Product product) {
         return productDao.addProduct(product);
+    }
+
+    @Override
+    public int deleteProductById(int productId) {
+        return productDao.deleteProductById(productId);
+    }
+
+    @Override
+    public int editProduct(Product product) {
+        return productDao.editProduct(product);
     }
 
     public void setProductDao(ProductDao productDao) {

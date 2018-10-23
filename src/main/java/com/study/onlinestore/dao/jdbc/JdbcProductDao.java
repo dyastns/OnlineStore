@@ -11,11 +11,14 @@ import java.util.List;
 
 public class JdbcProductDao implements ProductDao {
     private final static String GET_ALL_SQL = "SELECT id, name, description, price, picturePath FROM product;";
+    private final static String GET_PRODUCT_SQL = "SELECT id, name, description, price, picturePath FROM product WHERE id = ?;";
     private final static String ADD_PRODUCT_SQL = "INSERT INTO product (name, description, price, picturePath) VALUES (?, ?, ?, ?);";
+    private final static String DELETE_PRODUCT_SQL = "DELETE FROM product WHERE id = ?;";
+    private final static String EDIT_PRODUCT_SQL = "UPDATE product SET name = ?, description = ?, price = ?, picturepath = ? WHERE id = ?;";
     private final static ProductRowMapper PRODUCT_ROW_MAPPER = new ProductRowMapper();
 
     public List<Product> getAll() {
-        try (Connection connection = getConnection();
+        try (Connection connection = JdbcConnector.instance().getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(GET_ALL_SQL);) {
             List<Product> products = new ArrayList<>();
@@ -32,8 +35,26 @@ public class JdbcProductDao implements ProductDao {
     }
 
     @Override
+    public Product getProductById(int productId) {
+        try (Connection connection = JdbcConnector.instance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCT_SQL);) {
+            preparedStatement.setInt(1, productId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Product product = new Product();
+
+            while (resultSet.next()) {
+                product = PRODUCT_ROW_MAPPER.mapRow(resultSet);
+            }
+
+            return product;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public int addProduct(Product product) {
-        try (Connection connection = getConnection();
+        try (Connection connection = JdbcConnector.instance().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(ADD_PRODUCT_SQL);) {
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getDescription());
@@ -45,12 +66,29 @@ public class JdbcProductDao implements ProductDao {
         }
     }
 
-    private Connection getConnection() {
-        String dbUrl = "jdbc:postgresql://localhost:5432/storedb";
-        try {
-            return DriverManager.getConnection(dbUrl, "storedb_user", "123456");
+    @Override
+    public int deleteProductById(int productId) {
+        try (Connection connection = JdbcConnector.instance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PRODUCT_SQL);) {
+            preparedStatement.setInt(1, productId);
+            return preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Cannot create connection to database", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public int editProduct(Product product) {
+        try (Connection connection = JdbcConnector.instance().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(EDIT_PRODUCT_SQL);) {
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setString(2, product.getDescription());
+            preparedStatement.setDouble(3, product.getPrice());
+            preparedStatement.setString(4, product.getPicturePath());
+            preparedStatement.setInt(5, product.getId());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

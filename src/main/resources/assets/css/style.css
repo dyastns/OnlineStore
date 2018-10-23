@@ -53,6 +53,38 @@ ul, li {
     margin-top: 5px;
 }
 
+.dropdown {
+    float: left;
+    position: relative;
+}
+
+.dropdown-content {
+    position: absolute;
+    display: none;
+    background-color: white;
+    min-width: 90px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    font-size: 16px;
+    display: block;
+    float: none;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd; /*grey background color to dropdown links on hover*/
+}
+
+.session-menu__item .dropdown:hover .dropdown-content {
+    display: block;
+}
+
 .menu {
     font-size: 18px;
 }
@@ -93,8 +125,12 @@ ul, li {
     text-overflow: ellipsis;
 }
 
-.link__product-name {
+.link__product-name, .btn__product-edit, .btn__product-delete {
     color: black;
+}
+
+.product-list__actions form {
+    display: inline;
 }
 
 /* Footer */

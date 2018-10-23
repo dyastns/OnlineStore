@@ -1,3 +1,6 @@
+---------------------------------------------------------------------------------------------
+-------- product               --------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 INSERT INTO product (name, price, picturepath)
 VALUES ('T-Shirt Print “You Can Fly” In White', 15, 'http://drive.google.com/uc?export=view&id=0B3GirN2RxVkqZTBmamhiYUNjcU0');
 INSERT INTO product (name, price, picturepath)
@@ -30,3 +33,14 @@ INSERT INTO product (name, price, picturepath)
 VALUES ('T-Shirt Print “All You Need Is Love” In Grey', 15, 'http://drive.google.com/uc?export=view&id=0B3GirN2RxVkqSkFMbUI4M01ZZFE');
 INSERT INTO product (name, price, picturepath)
 VALUES ('T-Shirt Print “All You Need Is Love” In Black', 15, 'http://drive.google.com/uc?export=view&id=0B3GirN2RxVkqUWJqbVJQV21IQWc');
+
+
+---------------------------------------------------------------------------------------------
+-------- store_user            --------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+INSERT INTO store_user (name, password, usertype)
+       VALUES ('user_guest', '123', 'GUEST');
+INSERT INTO store_user (name, password, usertype)
+       VALUES ('user_user', '123', 'USER');
+INSERT INTO store_user (name, password, usertype)
+       VALUES ('user_admin', '123', 'ADMIN');

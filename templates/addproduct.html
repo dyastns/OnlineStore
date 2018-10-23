@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div lang="en">
+<html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -26,7 +26,15 @@
                             <a href="#"><i class="fas fa-search"></i></a>
                         </li>
                         <li class="session-menu__item">
-                            <a href="#"><i class="far fa-user"></i></a>
+                            <div class="dropdown">
+                                <a class="session-menu__user" href="/login">
+                                    <i class="far fa-user"></i>
+                                </a>
+                                <div class="dropdown-content">
+                                    <a href="/login">Log In</a>
+                                    <a href="/logout">Log Out</a>
+                                </div>
+                            </div>
                         </li>
                         <li class="session-menu__item">
                             <a href="#"><i class="far fa-heart"></i></a>
@@ -64,6 +72,11 @@
                             <li class="nav-item menu__item">
                                 <a class="nav-link" href="#">Sale</a>
                             </li>
+                            <#if user.userType == "ADMIN">
+                                <li class="nav-item menu__item">
+                                    <a class="nav-link" href="/product/add">Add New Product</a>
+                                </li>
+                            </#if>
                         </ul>
                     </div>
                 </nav>
@@ -76,36 +89,39 @@
     <div class="row">
         <h2 class="mb-3">Add product</h2>
         <div class="container">
-            <form action="/products/add" method="post">
+            <form action="/product/add" method="post">
                 <div class="form-group row">
-                    <label for="inputName" class="col-md-2 col-form-label col-form-label-sm">Name</label>
+                    <label for="inputName" class="col-md-2 col-form-label">Name</label>
                     <div class="col-md-6 col-lg-4">
-                        <input id="inputName" class="form-control form-control-sm" type="text" name="name" placeholder="Product name" required>
+                        <input id="inputName" class="form-control" type="text" name="name" placeholder="Product name" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputDescription" class="col-md-2 col-form-label col-form-label-sm">Description</label>
+                    <label for="inputDescription" class="col-md-2 col-form-label">Description</label>
                     <div class="col-md-6 col-lg-4">
-                        <textarea id="inputDescription" class="form-control form-control-sm" rows="3" name="description" placeholder="Description of the product"></textarea>
+                        <textarea id="inputDescription" class="form-control" rows="3" name="description" placeholder="Description of the product"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPrice" class="col-md-2 col-form-label col-form-label-sm">Price</label>
+                    <label for="inputPrice" class="col-md-2 col-form-label">Price</label>
                     <div class="col-md-4 col-lg-2">
-                        <input id="inputPrice" class="form-control form-control-sm" type="text" name="price" placeholder="Price in USD $" required>
+                        <input id="inputPrice" class="form-control" type="text" name="price" placeholder="Price in USD $" required>
                 </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputPicturePath" class="col-md-2 col-form-label col-form-label-sm">Picture Path</label>
+                    <label for="inputPicturePath" class="col-md-2 col-form-label">Picture Path</label>
                     <div class="col-md-10 col-lg-7">
-                        <input id="inputPicturePath" class="form-control form-control-sm" type="text" name="picturePath" placeholder="URL of the product picture" required>
+                        <input id="inputPicturePath" class="form-control" type="text" name="picturePath" placeholder="URL of the product picture" required>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-2 offset-md-2">
+                    <div class="col col-md-2 offset-md-2">
                         <button type="submit" class="btn btn-info">
                             Add product
                         </button>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-outline-info" href="/products" role="button">Cancel</a>
                     </div>
                 </div>
             </form>
