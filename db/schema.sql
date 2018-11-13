@@ -13,7 +13,8 @@ CREATE TABLE product (
 CREATE TABLE store_user(
   id serial PRIMARY KEY,
   name VARCHAR (50) UNIQUE NOT NULL,
-  password VARCHAR (50) NOT NULL,
+  password VARCHAR (60) NOT NULL,
   userType VARCHAR (50) NOT NULL CHECK (userType in ('GUEST', 'USER', 'ADMIN'))
 );
+
 

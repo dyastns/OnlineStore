@@ -47,6 +47,13 @@
             <version>42.2.5</version>
         </dependency>
 
+        <!-- Hashing Libraries -->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+
         <!-- Tests -->
         <dependency>
             <groupId>junit</groupId>

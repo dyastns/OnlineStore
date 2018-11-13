@@ -3,6 +3,7 @@ package com.study.onlinestore.web.servlet;
 import com.study.onlinestore.entity.User;
 import com.study.onlinestore.service.UserService;
 import com.study.onlinestore.web.templater.PageGenerator;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,9 +33,9 @@ public class LoginServlet extends HttpServlet {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
 
-        User user = userService.getUserByNameAndPassword(name, password);
+        User user = userService.getUserByName(name);
 
-        if (user.getName() != null) {
+        if (BCrypt.checkpw(password, user.getPassword())) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/");
         } else {

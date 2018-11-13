@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import java.sql.*;
 
 public class JdbcUserDao implements UserDao {
-    private final static String GET_USER_SQL = "SELECT name, password, usertype FROM store_user WHERE name = ? and password = ?;";
+    private final static String GET_USER_SQL = "SELECT name, password, usertype FROM store_user WHERE name = ?;";
     private final static UserRowMapper USER_ROW_MAPPER = new UserRowMapper();
 
     private DataSource dataSource;
@@ -18,11 +18,10 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public User getUserByNameAndPassword(String name, String password) {
+    public User getUserByName(String name) {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_SQL);) {
             preparedStatement.setString(1, name);
-            preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             User user = new User();

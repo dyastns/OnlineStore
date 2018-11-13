@@ -8,8 +8,8 @@ public class DefaultUserService implements UserService {
     private UserDao userDao;
 
     @Override
-    public User getUserByNameAndPassword(String name, String password) {
-        return userDao.getUserByNameAndPassword(name, password);
+    public User getUserByName(String name) {
+        return userDao.getUserByName(name);
     }
 
     public void setUserDao(UserDao userDao) {

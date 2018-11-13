@@ -38,9 +38,13 @@ VALUES ('T-Shirt Print “All You Need Is Love” In Black', 15, 'http://drive.g
 ---------------------------------------------------------------------------------------------
 -------- store_user            --------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
+--123
 INSERT INTO store_user (name, password, usertype)
-       VALUES ('user_guest', '123', 'GUEST');
+       VALUES ('user_guest', '$2a$12$zlbjTBEe1OYJ7MdgHSwhT.lsuQnnhpz0NC4zmrIWxLvQXs/93RjU6', 'GUEST');
 INSERT INTO store_user (name, password, usertype)
-       VALUES ('user_user', '123', 'USER');
+       VALUES ('user_user', '$2a$12$o4cr4/J0TeJhQJJ90aGi7.aBEWSQV2EXXMPWnhFL7cMdAcM8xgLEm', 'USER');
 INSERT INTO store_user (name, password, usertype)
-       VALUES ('user_admin', '123', 'ADMIN');
+       VALUES ('user_admin', '$2a$12$nkWB9vRLJkyqxF80L62Ag.Oe.NEdoAQhusaLQMneBL5rnl4jAtgL6', 'ADMIN');
+
+
+
