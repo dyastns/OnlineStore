@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="dataSource" class="org.postgresql.ds.PGSimpleDataSource">
+        <property name="serverName" value="localhost"/>
+        <property name="portNumber" value="5432"/>
+        <property name="databaseName" value="storedb"/>
+        <property name="user" value="storedb_user"/>
+        <property name="password" value="123456"/>
+    </bean>
+</beans>

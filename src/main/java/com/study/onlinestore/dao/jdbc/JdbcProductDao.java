@@ -20,6 +20,9 @@ public class JdbcProductDao implements ProductDao {
 
     private DataSource dataSource;
 
+    public JdbcProductDao() {
+    }
+
     public JdbcProductDao(DataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -97,5 +100,9 @@ public class JdbcProductDao implements ProductDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 }

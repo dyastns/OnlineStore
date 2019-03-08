@@ -1,11 +1,9 @@
 package com.study.onlinestore;
 
-import com.study.onlinestore.dao.ProductDao;
-import com.study.onlinestore.dao.UserDao;
-import com.study.onlinestore.dao.jdbc.JdbcProductDao;
-import com.study.onlinestore.dao.jdbc.JdbcUserDao;
-import com.study.onlinestore.service.impl.DefaultProductService;
-import com.study.onlinestore.service.impl.DefaultUserService;
+import com.study.applicationcontext.ApplicationContext;
+import com.study.applicationcontext.impl.ClassPathApplicationContext;
+import com.study.onlinestore.service.ProductService;
+import com.study.onlinestore.service.UserService;
 import com.study.onlinestore.web.filter.AdminFilter;
 import com.study.onlinestore.web.filter.LoginFilter;
 import com.study.onlinestore.web.filter.UserFilter;
@@ -14,7 +12,6 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.servlet.DispatcherType;
 import java.io.BufferedReader;
@@ -25,23 +22,9 @@ import java.util.Properties;
 
 public class Starter {
     public static void main(String[] args) throws Exception {
-        Properties properties = getAppProperties();
-
-        PGSimpleDataSource dataSource = new PGSimpleDataSource();
-        dataSource.setUrl(properties.getProperty("db.url"));
-        dataSource.setUser(properties.getProperty("db.user"));
-        dataSource.setPassword(properties.getProperty("db.password"));
-
-        //config dao
-        ProductDao productDao = new JdbcProductDao(dataSource);
-        UserDao userDao = new JdbcUserDao(dataSource);
-
-        //config service
-        DefaultProductService productService = new DefaultProductService();
-        productService.setProductDao(productDao);
-
-        DefaultUserService userService = new DefaultUserService();
-        userService.setUserDao(userDao);
+        ApplicationContext context = new ClassPathApplicationContext("context.xml");
+        ProductService productService = context.getBean(ProductService.class);
+        UserService userService = context.getBean(UserService.class);
 
         //config servlet
         ProductsServlet productsServlet = new ProductsServlet();

@@ -1,5 +1,7 @@
 package com.study.onlinestore.dao.jdbc;
 
+import com.study.applicationcontext.ApplicationContext;
+import com.study.applicationcontext.impl.ClassPathApplicationContext;
 import com.study.onlinestore.entity.Product;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -19,13 +21,8 @@ public class JdbcProductDaoITest {
     @BeforeClass
     public static void oneTimeSetUp() {
         // one-time initialization code
-        dataSource = new PGSimpleDataSource();
-
-        Properties properties = getAppProperties();
-
-        dataSource.setUrl(properties.getProperty("db.url"));
-        dataSource.setUser(properties.getProperty("db.user"));
-        dataSource.setPassword(properties.getProperty("db.password"));
+        ApplicationContext context = new ClassPathApplicationContext("context.xml");
+        dataSource = context.getBean(PGSimpleDataSource.class);
     }
 
     @Test
@@ -45,22 +42,6 @@ public class JdbcProductDaoITest {
             assertNotNull(product.getId());
             assertNotNull(product.getName());
             System.out.println(product);
-        }
-    }
-
-    private static Properties getAppProperties() {
-        String propertiesLocation = System.getProperty("properties.location");
-        if (propertiesLocation != null) {
-            File file = new File(propertiesLocation, "application.properties");
-            Properties properties = new Properties();
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                properties.load(reader);
-            } catch (Exception e) {
-                throw new RuntimeException("File with properties for application couldn't be read at: " + file);
-            }
-            return properties;
-        } else {
-            throw new RuntimeException("Properties for application was not specified.");
         }
     }
 }

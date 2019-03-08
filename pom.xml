@@ -67,6 +67,12 @@
             <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
 
+        <!-- Application context -->
+        <dependency>
+            <groupId>com.study.ann</groupId>
+            <artifactId>applicationcontext</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
